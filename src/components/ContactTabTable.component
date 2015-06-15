@@ -1,0 +1,98 @@
+<apex:component >
+    <!-- apex:attribute -->
+    <apex:attribute name="contacts" type="Contact[]" description="Contact Record List" />
+    <apex:attribute name="refreshId" type="String" description="Refresh ID" />
+    <apex:attribute name="msgId" type="String" description="Message ID" />
+    <apex:attribute name="doDeleteContacts" type="ApexPages.Action" description="削除ボタン処理" />
+    <!-- main -->
+    <div>
+        <table cellpadding="0" cellspacing="0" class="objectTable">
+            <colgroup>
+                <col width="90px;" />
+                <col width="300px;" />
+                <col width="300px;" />
+                <col width="300px;" />
+                <col />
+            </colgroup>
+            <thead>
+                <tr>
+                    <td class="titleCell contactTable" rowspan="2">
+                        <apex:outputText value="" />
+                    </td>
+                    <td class="titleCell contactTable highlightLabel">
+                        <!-- 姓 -->
+                        <apex:outputLabel value="{!$ObjectType.Contact.Fields.LastName.Label}" for="lastName" />
+                    </td>
+                    <td class="titleCell contactTable">
+                        <!-- 名 -->
+                        <apex:outputLabel value="{!$ObjectType.Contact.Fields.FirstName.Label}" for="firstName" />
+                    </td>
+                    <td class="titleCell contactTable">
+                        <!-- 敬称 -->
+                        <apex:outputLabel value="{!$ObjectType.Contact.Fields.Salutation.Label}" for="salutation" />
+                    </td>
+                    <td class="titleCell contactTable" rowspan="2">
+                        <apex:outputText value="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="titleCell contactTable">
+                        <!-- 部署 -->
+                        <apex:outputLabel value="{!$ObjectType.Contact.Fields.Department.Label}" for="department" />
+                    </td>
+                    <td class="titleCell contactTable">
+                        <!-- 役職 -->
+                        <apex:outputLabel value="{!$ObjectType.Contact.Fields.Title.Label}" for="title" />
+                    </td>
+                    <td class="titleCell contactTable">
+                        <!-- 上司 -->
+                        <apex:outputLabel value="{!$ObjectType.Contact.Fields.ReportsToId.Label}" for="reportsTo" />
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:variable value="{!0}" var="listCnt"/>
+                <apex:repeat value="{!contacts}" var="item">
+                    <tr>
+                        <td class="valueCell deleteBtn" rowspan="2">
+                            <apex:commandButton value=" {!$Label.DeleteRow} " title=" {!$Label.DeleteRow} " action="{!doDeleteContacts}" reRender="{!refreshId},{!msgId}" immediate="true">
+                                <apex:param name="deleteContactId" value="{!item.Id}" />
+                                <apex:param name="listCnt" value="{!listCnt}" />
+                            </apex:commandButton>
+                        </td>
+                        <td class="valueCell">
+                            <!-- 姓 -->
+                            <apex:inputField value="{!item.LastName}" styleClass="largeWidth" rendered="true" id="lastName" />
+                        </td>
+                        <td class="valueCell">
+                            <!-- 名 -->
+                            <apex:inputField value="{!item.FirstName}" styleClass="largeWidth" id="firstName" />
+                        </td>
+                        <td class="valueCell">
+                            <!-- 敬称 -->
+                            <apex:inputField value="{!item.Salutation}" styleClass="largeWidth" id="salutation" />
+                        </td>
+                        <td class="contactTable" rowspan="2">
+                            <apex:outputText value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="valueCell">
+                            <!-- 部署 -->
+                            <apex:inputField value="{!item.Department}" styleClass="largeWidth" id="department" />
+                        </td>
+                        <td class="valueCell">
+                            <!-- 役職 -->
+                            <apex:inputField value="{!item.Title}" styleClass="largeWidth" id="title" />
+                        </td>
+                        <td class="valueCell">
+                            <!-- 上司 -->
+                            <apex:inputField value="{!item.ReportsToId}" styleClass="largeWidth" id="reportsToId" />
+                        </td>
+                    </tr>
+                    <apex:variable value="{!listCnt + 1}" var="listCnt"/>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </div>
+</apex:component>

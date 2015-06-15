@@ -1,0 +1,46 @@
+<apex:page >
+    <style type="text/css">
+        #vf-page .objectTable * {
+            font-size: 8px;
+        }
+        #vf-page .objectTable {
+            width: 100%;
+            min-width: 1100px;
+            border-top: solid 1px #CCCCCC;
+            border-left: solid 1px #CCCCCC;
+        }
+        #vf-page .objectTable tr th,
+        #vf-page .objectTable tr td {
+            padding-left: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border-bottom: solid 1px #CCCCCC;
+            border-right: solid 1px #CCCCCC;
+        }
+        #vf-page .titleCell {
+            padding-left: 10px !important;
+            text-align: left;
+            font-weight: Bold;
+            color: #FFFFFF;
+        }
+        #vf-page .accountTable {
+            background-color: #717ECD;
+        }
+        #vf-page .contactTable {
+            background-color: #4EB1CB;
+        }
+        #vf-page .valueCell {
+            background-color: #FFFFFF;
+        }
+        #vf-page .highlightLabel {
+            color: #FFFF00;
+        }
+        #vf-page .largeWidth {
+            width: 90%;
+            box-sizing: border-box;
+        }
+        #vf-page .deleteBtn {
+            padding-right: 5px;
+        }
+    </style>
+</apex:page>

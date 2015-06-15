@@ -1,0 +1,99 @@
+<apex:component >
+    <!-- apex:attribute -->
+    <apex:attribute name="account" type="Account" description="Account Record" />
+    <!-- main -->
+    <div>
+        <table cellpadding="0" cellspacing="0" class="objectTable">
+            <colgroup>
+                <col width="130px;" />
+                <col width="350px;" />
+                <col width="130px;" />
+                <col width="350px;" />
+                <col />
+            </colgroup>
+            <tr>
+                <td class="titleCell accountTable highlightLabel">
+                    <!-- 取引先 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.Name.Label}" for="accountName" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.Name}" id="accountName" required="true" styleClass="largeWidth" />
+                </td>
+                <td class="titleCell accountTable">
+                    <!-- 取引先番号 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.AccountNumber.Label}" for="accountNumber" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.AccountNumber}" id="accountNumber" styleClass="largeWidth" />
+                </td>
+                <td class="titleCell accountTable" rowspan="5">
+                    <apex:outputText value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="titleCell accountTable">
+                    <!-- 親取引先 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.ParentId.Label}" for="accountParent" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.ParentId}" id="accountParent" styleClass="largeWidth" />
+                </td>
+                <td class="titleCell accountTable">
+                    <!-- 種別 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.Type.Label}" for="accountType" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.Type}" id="accountType" styleClass="largeWidth" />
+                </td>
+            </tr>
+            <tr>
+                <td class="titleCell accountTable">
+                    <!-- 取引先 部門 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.Site.Label}" for="accountSite" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.Site}" id="accountSite" styleClass="largeWidth" />
+                </td>
+                <td class="titleCell accountTable">
+                    <!-- 評価 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.Rating.Label}" for="accountRating" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.Rating}" id="accountRating" styleClass="largeWidth" />
+                </td>
+            </tr>
+            <tr>
+                <td class="titleCell accountTable">
+                    <!-- 電話 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.Phone.Label}" for="accountPhone" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.Phone}" id="accountPhone" styleClass="largeWidth" />
+                </td>
+                <td class="titleCell accountTable">
+                    <!-- Fax -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.Fax.Label}" for="accountFax" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.Fax}" id="accountFax" styleClass="largeWidth" />
+                </td>
+            </tr>
+            <tr>
+                <td class="titleCell accountTable">
+                    <!-- 年間売上 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.AnnualRevenue.Label}" for="accountAnnualRevenue" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.AnnualRevenue}" id="accountAnnualRevenue" styleClass="largeWidth" />
+                </td>
+                <td class="titleCell accountTable">
+                    <!-- 従業員数 -->
+                    <apex:outputLabel value="{!$ObjectType.Account.Fields.NumberOfEmployees.Label}" for="accountNumberOfEmployees" />
+                </td>
+                <td class="valueCell">
+                    <apex:inputField value="{!account.NumberOfEmployees}" id="accountNumberOfEmployees" styleClass="largeWidth" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</apex:component>

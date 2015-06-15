@@ -1,0 +1,45 @@
+<apex:page standardController="Account" extensions="AccountTabRegisterController" showHeader="true" sidebar="false" id="page">
+    <apex:include pageName="AccountTabRegisterCss" />
+    <apex:stylesheet value="{!$Resource.CommonFontFamily}" />
+    <apex:stylesheet value="{!$Resource.CommonCss}" />
+    <!-- main -->
+    <div id="vf-page">
+        <apex:form id="form">
+            <apex:pageBlock title="{!IF(NOT(ISBLANK(Account.Id)), Account.Name, $ObjectType.Account.Label)}" id="block">
+                <apex:pageMessages id="msg" />
+                <!-- commandButtons -->
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton value=" {!$Label.Save} " title=" {!$Label.Save} " action="{!doSave}" reRender="accountTabTablePanel, contactTabTablePanel, msg" />
+                    <apex:commandButton value=" {!$Label.Delete} " title=" {!$Label.Delete} " action="{!Delete}" reRender="form" />
+                </apex:pageBlockButtons>
+                <!-- apex:tab -->
+                <apex:tabPanel switchType="client" selectedTab="accountTab" id="theTabPanel">
+                    <apex:tab label="{!$ObjectType.Account.Label}" name="accountTab" id="accountTab">
+                        <apex:actionRegion id="accountRegion">
+                            <apex:outputPanel id="accountTabTablePanel">
+                                <c:AccountTabTable account="{!Account}" />
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:tab>
+                    <apex:tab label="{!$ObjectType.Contact.Label}" name="contactTab" id="contactTab">
+                        <apex:actionRegion id="contactRegion">
+                            <apex:commandButton value=" {!$Label.Add} " title=" {!$Label.Add} " action="{!doAddContacts}"
+                                                                        reRender="contactTabTablePanel, msg" immediate="true" />
+                            <apex:outputPanel id="contactTabTablePanel">
+                                <c:ContactTabTable contacts="{!contacts}" doDeleteContacts="{!doDeleteContacts}" refreshId="{!$Component.contactTabTablePanel}" msgId="{!$Component.msg}" />
+                            </apex:outputPanel>
+                        </apex:actionRegion>
+                    </apex:tab>
+                </apex:tabPanel>
+            </apex:pageBlock>
+        </apex:form>
+        <!-- 活動予定 -->
+        <apex:relatedList list="OpenActivities" />
+        <!-- 活動履歴 -->
+        <apex:relatedList list="ActivityHistories" />
+        <!-- メモ & 添付ファイル -->
+        <apex:relatedList list="CombinedAttachments" />
+    </div>
+    <!-- javascript -->
+    <apex:include pageName="AccountTabRegisterScript" />
+</apex:page>
